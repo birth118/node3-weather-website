@@ -19,6 +19,7 @@ hbs.registerPartials(partialsPath)  // Partials are here
 // to set up static directory to serve
 app.use(express.static(publicDir))  // Still required. This will refer static reosurces such as images, 
 
+
 //app.com   - 4 routes
 //app.com/help
 //app.com/about 
