@@ -36,7 +36,7 @@ const forecast=(longitude = '127', latitude ='37.58333', fn)=>{      // by defau
             const summaryMsg = `${summary} (${timezone})`
             const detailMsg = `It is currently ${celcisusFixed} degrees hot and chance of rain is ${chanceOfRain}%`
             const lowMsg = `Day low: ${convertToCelcius(temperatureLow)} at ${convertUnixtime(temperatureLowTime)}`
-            const highMsg = `Day low: ${convertToCelcius(temperatureHigh)} at ${convertUnixtime(temperatureHighTime)}`           
+            const highMsg = `Day high: ${convertToCelcius(temperatureHigh)} at ${convertUnixtime(temperatureHighTime)}`           
 
             fn(undefined, {summaryMsg, detailMsg, lowMsg, highMsg})
 
