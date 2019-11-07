@@ -22,7 +22,8 @@ console.log('client side js loaded')
 
 const getWeather=(location, fn)=>{
 
-    const url = 'http://localhost:3000/weather?address='+location
+    //const url = 'http://localhost:3000/weather?address='+location
+    const url = '/weather?address='+location    //To be used in PROD environment
     fetch(url).then((reponse)=>{
         reponse.json().then((data)=>{
             if(data.error){
