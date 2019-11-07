@@ -49,7 +49,7 @@ weatherForm.addEventListener('submit',(e)=>{
     e.preventDefault()
     const location = search.value.trim()
     msg1El.textContent='Searching...'
-    //divEl.innerHTML =''
+    divEl.innerHTML =''
 
 //    console.log(location)
     getWeather(location,(error, data)=>{
