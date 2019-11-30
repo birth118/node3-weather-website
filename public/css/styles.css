@@ -1,6 +1,8 @@
 
 body {
-    color: #333333;
+/*     color: #333333; */
+    background: #2B292E;
+    color: #fafafa;
     font-family: Arial;
     max-width: 650px;
     margin: 0 auto;
@@ -14,6 +16,12 @@ body {
 .main-content {
     flex-grow: 1;        /* 1 means it will take over all remaining space*/
 }
+
+.action-content {
+    float: left;     
+    padding-right: 4px;
+}
+
 
 footer {
     color: #888888;
@@ -53,4 +61,5 @@ button {
     border: 1px sold #888888;
     background: #888888;
     padding: 8px;
+    color: white
 }

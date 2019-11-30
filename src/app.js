@@ -1,14 +1,14 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
-const getGeoCode = require('./utils/geocode')
+const {getGeoCode, getReverseGeoCode}  = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
 const app = express()
 const port = process.env.PORT || 3000   // Either to use Heroku to give or locally 3000
 
 // To define paths for Express config
-const publicDir= path.join(__dirname, '../public')
+const publicDir= path.join(__dirname, '../public')  // __dirname -> current directory
 const viewsPath = path.join(__dirname,'../templates/views')   // Configured '../templates' folder instead of 'views' folder which is default
 const partialsPath = path.join(__dirname,'../templates/partials')
 
@@ -96,6 +96,44 @@ app.get('/weather', (req, res)=>{
 
 
 })
+
+
+// http://localhost:3000/weatherGeocode?longitude=151.0994418&latitude=-33.702873499999995
+//longitude = '127', latitude ='37.58333'
+// latitude: -33.702873499999995
+// longitude: 151.0994418
+
+app.get('/weatherGeocode',(req, res)=>{
+    if(!req.query.longitude || !req.query.latitude){
+        return res.send({
+            error: 'Must provide logitude and latitue'
+        })
+    }
+
+    const longitude  = req.query.longitude 
+    const latitude  = req.query.latitude
+
+    getReverseGeoCode({longitude, latitude},(error, data)=>{
+        if(error){
+            return res.send({error})
+        }else{
+            forecast(longitude,latitude, (err, forecastData)=>{
+                const location = data
+                if(err){
+                    return res.send({err})
+                }
+                res.send({
+                    address: 'Where City',
+                    location,
+                    weather: forecastData
+                })
+            })
+        }
+
+    })
+
+})
+
 
 app.get('/help/*',(req,res)=>{                  // to catch all under /Help
 //    res.send('<h1>Help is not found</h1>')
